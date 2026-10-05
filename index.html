@@ -46,7 +46,20 @@ a{color:inherit}
 }
 .site-header nav a:hover{color:#111217}
 .nav-cta{
-  padding:10px 16px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.55);
+  position:relative;
+  overflow:hidden;
+  padding:10px 16px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:rgba(255,255,255,.55);
+  transition:transform .25s ease,background .25s ease,color .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.nav-cta:hover{
+  transform:translateY(-2px);
+  background:#111217;
+  color:#fff!important;
+  border-color:#111217;
+  box-shadow:0 10px 24px rgba(17,18,23,.14);
 }
 .hero{
   position:relative;min-height:760px;padding:86px 0 54px;display:flex;flex-direction:column;align-items:center;text-align:center;
@@ -75,21 +88,70 @@ a{color:inherit}
 }
 .hero h1 em{font-family:Georgia,"Times New Roman",serif;font-weight:400}
 .hero-text{
-  max-width:580px;margin:30px auto 28px;color:#65666b;font-size:15px;line-height:1.7;
+  max-width:580px;margin:30px auto 30px;color:#65666b;font-size:15px;line-height:1.7;
 }
+.hero>.button{margin-bottom:6px}
 .button{
   display:inline-flex;align-items:center;gap:22px;border-radius:999px;padding:12px 16px 12px 18px;
   border:1px solid var(--line);background:rgba(255,255,255,.72);text-decoration:none;
   font-size:11px;font-weight:750;transition:.25s;
 }
-.button:hover{background:#111217;color:#fff;border-color:#111217;transform:translateY(-1px)}
-.hero-stats{
-  width:100%;display:grid;grid-template-columns:repeat(3,1fr);margin-top:auto;border-block:1px solid var(--line);
+.button:hover{
+  background:#111217;
+  color:#fff;
+  border-color:#111217;
+  transform:translateY(-3px);
+  box-shadow:0 12px 26px rgba(17,18,23,.16);
 }
-.hero-stat{text-align:left;padding:18px 22px}
-.hero-stat+ .hero-stat{border-left:1px solid var(--line)}
-.hero-stat span{display:block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#96979c;margin-bottom:5px}
-.hero-stat strong{font-size:12px;font-weight:650}
+.hero-stats{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin-top:92px;
+  padding-top:26px;
+  border-top:1px solid var(--line);
+}
+.hero-stat{
+  position:relative;
+  overflow:hidden;
+  min-height:118px;
+  text-align:left;
+  padding:22px 24px;
+  border:1px solid rgba(17,18,23,.10);
+  border-radius:18px;
+  background:rgba(255,255,255,.42);
+  backdrop-filter:blur(14px);
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease,background .28s ease;
+}
+.hero-stat:before{
+  content:"";
+  position:absolute;
+  width:110px;height:110px;
+  right:-45px;bottom:-60px;
+  border-radius:50%;
+  filter:blur(18px);
+  opacity:.28;
+  transition:transform .35s ease,opacity .35s ease;
+}
+.hero-stat:nth-child(1):before{background:#ff7d9e}
+.hero-stat:nth-child(2):before{background:#ffae73}
+.hero-stat:nth-child(3):before{background:#6d8cff}
+.hero-stat:hover{
+  transform:translateY(-4px);
+  border-color:rgba(17,18,23,.18);
+  background:rgba(255,255,255,.72);
+  box-shadow:0 18px 38px rgba(30,24,43,.08);
+}
+.hero-stat:hover:before{transform:scale(1.18);opacity:.42}
+.hero-stat span{
+  position:relative;z-index:1;
+  display:block;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#999aa0;margin-bottom:12px
+}
+.hero-stat strong{
+  position:relative;z-index:1;
+  display:block;font-size:15px;font-weight:700;letter-spacing:-.02em
+}
 
 .work{padding:120px 0 100px}
 .section-head{
@@ -203,7 +265,7 @@ a{color:inherit}
   :root{--shell:min(100% - 28px,1240px)}
   .site-header{height:74px}.site-header nav{gap:14px}.site-header nav>a:not(.nav-cta){display:none}
   .hero{min-height:680px;padding-top:74px}.hero h1{font-size:clamp(64px,18vw,110px)}
-  .hero-stats{grid-template-columns:1fr}.hero-stat+.hero-stat{border-left:0;border-top:1px solid var(--line)}
+  .hero-stats{grid-template-columns:1fr;gap:10px;margin-top:66px}.hero-stat{min-height:96px}
   .section-head{grid-template-columns:1fr;gap:24px}.section-head>p{justify-self:start}
   .project-grid{grid-template-columns:1fr;gap:0}.project-grid .project:nth-child(1),.project-grid .project:nth-child(2){margin-top:0}
   .project-wide .project-media,.project:not(.project-wide) .project-media{aspect-ratio:16/10}
@@ -229,7 +291,7 @@ a{color:inherit}
   <div class="noise"></div>
 
   <header class="site-header shell">
-    <a class="brand" href="#top" aria-label="Martin Dahmer — início">Martin Dahmer.</a>
+    <a class="brand" href="#top" aria-label="Martin Dahmer — início">Martin Dahmer</a>
     <nav aria-label="Navegação principal">
       <a href="#work">Projetos</a>
       <a href="#about">Sobre</a>
@@ -332,7 +394,7 @@ a{color:inherit}
 
   <footer class="site-footer">
     <div class="shell">
-      <strong>Martin Dahmer.</strong>
+      <strong>Martin Dahmer</strong>
       <div><span>© <span id="year"></span> Martin Dahmer</span><a href="#top">Voltar ao topo ↑</a></div>
     </div>
   </footer>
